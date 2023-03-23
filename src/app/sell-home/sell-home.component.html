@@ -1,0 +1,188 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#ffffff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div id="bg">
+    <section class="myform-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-area login-form">
+                        <div class="form-input">
+                            <h2 style="display:flex ; justify-content: center ;align-items: center;">House Details</h2>
+
+                            <hr>
+
+                            <form #form="ngForm">
+
+                                <div class="form-group">
+                                    <input type="text" id="" pattern="[a-z_A-Z]+" name="city" #city="ngModel" ngModel
+                                        minlength="5" required>
+                                    <label>City name</label>
+                                </div>
+
+                                <div *ngIf="city.invalid && (city.dirty || city.touched)" class="note alert">
+                                    <div *ngIf="city.errors?.['required']">
+                                        city is required.
+                                    </div>
+                                    <div *ngIf="city.errors?.['minlength']">
+                                        City Name must be at least 5 characters long.
+                                    </div>
+                                    <div *ngIf="city.errors?.['pattern']">
+                                        city invalid
+                                    </div>
+
+                                </div>
+                                <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+                                <div class="form-group">
+                                    <input type="text" id="" name="neighborhood" minlength="5" #neighborhood="ngModel"
+                                        ngModel required>
+                                    <label>Neighborhood name</label>
+                                </div>
+
+                                <div *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched)"
+                                    class="note alert">
+                                    <div *ngIf="neighborhood.errors?.['required']">
+                                        neighborhood is required.
+                                    </div>
+                                    <div *ngIf="neighborhood.errors?.['minlength']">
+                                        Neighborhood Name must be at least 5 characters long.
+                                    </div>
+
+
+
+
+                                </div>
+                                <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+
+                                <div class="form-group">
+                                    <input type="text" minlength="3" maxlength="4" name="area" pattern="[0-9]+"
+                                        #area="ngModel" ngModel required>
+                                    <label>Area in square metres</label>
+                                </div>
+                                <div *ngIf="area.invalid && (area.dirty || area.touched)" class="note alert">
+                                    <div *ngIf="area.errors?.['required']">
+                                        Area is required.
+                                    </div>
+                                    <div *ngIf="area.errors?.['pattern']">
+                                        Area is invalid.
+                                    </div>
+                                    <div *ngIf="area.errors?.['minlength']">
+                                        Area is invalid.
+                                    </div>
+
+                                </div>
+                                <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+
+                                <div class="form-group">
+                                    <input type="text" id="" pattern="[0-9]+" name="rooms" #rooms="ngModel" ngModel
+                                        maxlength="1" required>
+                                    <label>The number of rooms</label>
+                                </div>
+                                <div *ngIf="rooms.invalid && (rooms.dirty || rooms.touched)" class="note alert">
+                                    <div *ngIf="rooms.errors?.['required']">
+                                        number of rooms is required.
+                                    </div>
+                                    <div *ngIf="rooms.errors?.['pattern']">
+                                        number of rooms invalid
+                                    </div>
+                                    <div *ngIf="rooms.errors?.['maxlength']">
+                                        number of rooms invalid
+                                    </div>
+
+
+                                </div>
+                                <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+                                <div class="form-group">
+                                    <input type="text" name="price" #price="ngModel" ngModel pattern="[0-9]+" required>
+                                    <label>Expected price. in US dollars</label>
+                                </div>
+                                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="note alert">
+                                    <div *ngIf="price.errors?.['required']">
+                                        Price is required.
+                                    </div>
+                                    <div *ngIf="price.errors?.['pattern']">
+                                        Price not valid.
+                                    </div>
+
+                                </div>
+                                <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+
+
+
+                                <div class="uploadF">
+                                    <div class="">
+
+                                        <h4>
+                                            Select six photo for the house
+                                        </h4>
+                                        <input ngModel #file="ngModel" name="img[]" required class="form-control"
+                                            maxlength="6" accept="image/*" type="file" multiple id="formFileMultiple"
+                                            (change)="handleFiles($event)">
+                                        <p class="note alert" *ngIf="errorMessageFile">{{errorMessageFile}}</p>
+                                        <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="input-group">
+                                    <span class="input-group-text">offer details</span>
+                                    <textarea #details="ngModel" ngModel name="details" required class="form-control"
+                                        aria-label="With textarea"></textarea>
+
+                                </div>
+                                <div *ngIf="details.invalid && (details.dirty || details.touched)" class="note alert">
+                                    <div *ngIf="details.errors?.['required']">
+                                        details is required.
+                                    </div>
+
+
+                                </div>
+                                <p class="note alert" *ngIf="errorMessageField">{{errorMessageField}}</p>
+
+
+                                <h4>
+                                    Mark the location of the housen
+                                </h4>
+
+
+
+                                <div class="map">
+
+                                    <google-map height="500px" width="100%" [options]="mapOptions"
+                                        (mapClick)="clickMap($event)">
+                                        <map-marker #point="mapMarker" [position]="marker"
+                                            (mapClick)="openInfoWindow(point)"></map-marker>
+                                        <map-info-window>
+                                            <div> {{'lat:'+marker.lat}} <br>
+                                                {{'lng:'+marker.lng}}</div>
+                                        </map-info-window>
+                                    </google-map>
+                                </div>
+                                <div class="myform-button">
+
+
+                                    <button
+                                        [disabled]="(area.errors?.['required']||rooms.errors?.['required']||neighborhood.errors?.['required']||city.errors?.['required']||price.errors?.['requires']||file.errors?.['required'])||(area.errors?.['pattern']||rooms.errors?.['pattern']||price.errors?.['pattern']||city.errors?.['pattern'])?true:false"
+                                        class="myform-btn">
+                                        <div (click)="(area.errors?.['required']||rooms.errors?.['required']||neighborhood.errors?.['required']||city.errors?.['required']||price.errors?.['requires']||file.errors?.['required']||details.errors?.['required']||numberOfFile==0)?emptyField(form) : submit(form)"
+                                            [ngStyle]="{'width': '91%' , 'opacity':'0','height':'10%','position':'absolute','margin-top':'-12px'}">
+                                        </div>
+                                        Add Offer
+                                    </button>
+
+                                </div>
+
+
+
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

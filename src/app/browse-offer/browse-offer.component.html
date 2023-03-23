@@ -1,0 +1,60 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#ffffff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="hero">
+    <h3>Browse Offer</h3>
+    <div class="btnSideNav" (click)="openList=!openList">
+        <i class="fa fa-bars"></i>
+    </div>
+</div>
+
+
+<div class="sideNav" [ngClass]="{'open': openList, 'close':!openList}">
+
+    <div class="sideNavItem">
+        <div (click)="openList=false" class="btnSideNavClose">
+            <i class="fa fa-close"></i>
+        </div>
+        <hr style="margin: 10px 20px ;">
+        <ul>
+            <li (click)="goTo('home-page')"> Home Page </li>
+            <li (click)="goTo('sellHome')"> Sell Home </li>
+            <li (click)="logOut()"> Log out </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-12">
+            <input #filter type="text" placeholder="Search by city name">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-12 pt-lg-0 pt-md-0 pt-2">
+            <button (click)="filterOffer(filter.value)">
+                Search
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="offers">
+
+    <div class="offers-card" *ngFor="let offer of offers" (click)="goToOffer(offer.offer_number)">
+        <p-card [header]="offer.city" [style]="{width: '360px'}" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" height="180px" [src]="staticLinkImage+offer.img0">
+            </ng-template>
+            <div class="de_offer">
+                <p>{{offer.details}}</p>
+            </div>
+        </p-card>
+    </div>
+
+
+</div>
+<footer>
+    <img src="../../assets/img/footer-art.svg" alt="" width="100%">
+</footer>

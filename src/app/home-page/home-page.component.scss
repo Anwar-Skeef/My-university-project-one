@@ -1,0 +1,253 @@
+.hero {
+    nav {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+
+        ul {
+            color: rgb(249, 249, 249);
+            list-style: none;
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.472);
+            padding: 5px;
+            border-radius: 21px;
+
+            #logOut {
+                width: 3em;
+                transition: all 0.5s ease;
+                a{
+                    position: absolute;
+                    top: 4px;
+                    right: 17px;
+                }
+                span {
+                   opacity: 0;
+     
+                   transition: all 0.5s ease ;
+                }
+
+  
+            }
+
+            #logOut:hover {
+                width: 13em ;            
+         cursor: pointer;  
+                span {
+                    opacity: 1;      
+                    margin: 0 2em;                   
+                }
+            
+            }
+
+            li {
+                margin: 0px 20px;
+
+                a {
+                    text-decoration: none;
+                    color: aliceblue;
+                    transition: all 0.5s ease-out;
+                }
+
+                a:hover {
+                    font-size: large;
+                }
+            }
+        }
+    }
+
+
+    .carousel {
+        box-shadow: 0px 6px 17px 0px #3e4ea0;
+
+        .carousel-inner {
+            .carousel-item {
+                height: 31em;
+
+
+            }
+
+        }
+    }
+
+    // .carousel-indicators >* {
+    //     background-color: #7492ee75;
+    // }
+
+    .btnSideNav {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+        padding: 8px;
+        border-radius: 25px;
+        background-color: #1a1b1bc4;
+        color: #c9e6ee;
+        display: none;
+    }
+}
+
+//side nav
+.sideNav {
+    position: fixed;
+    backdrop-filter: blur(5px);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 3;
+    background-color: #7492ee75;
+    border-top-left-radius: 45px 66px;
+    border-bottom-left-radius: 45px 66px;
+    transition: all 0.5s ease-in;
+
+    .sideNavItem {
+
+        display: flex;
+        flex-direction: column;
+
+        .btnSideNavClose {
+            margin: 10px auto 0px 30px;
+            animation: mymove 2s infinite;
+            font-size: large;
+        }
+
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            padding: 0%;
+            margin: auto;
+            list-style: none;
+
+            li {
+                a {
+                    text-decoration: none;
+                    color: black;
+                }
+
+                padding: 12px 7em;
+
+            }
+
+        }
+
+    }
+}
+
+.open {
+    width: 18em;
+}
+
+.close {
+    width: 0em;
+}
+
+// start body
+h1{
+display: flex;
+justify-content: center;
+margin:1em 0;
+color: rgb(25, 51, 101);
+}
+.row {
+    justify-content: center;
+    margin: {
+top: 3em
+;
+bottom: 6em;
+    };
+
+    .box {
+
+        margin: 1em 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        border-radius: 14px;
+        height: 31em;
+        width: 25em;
+        box-shadow: 1px 2px 9px 0px #1f36607a;
+        transition: all 0.3s ease-out;
+
+        img {
+            max-width: 26em;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        &:hover {
+            transform: scale(1.05);
+
+            box-shadow: 1px 3px 20px 4px cornflowerblue;
+        }
+
+    }
+
+    // .box:hover {
+    //     box-shadow: 1px 3px 20px 4px cornflowerblue;
+    //     top: -5px;
+    //     // transition: all 0.3s ease-out;
+    // }
+
+    .box>* {
+        padding: 1em 1em;
+    }
+
+}
+
+
+
+@media only screen and(max-width:426px) {
+
+    .hero {
+        nav {
+
+            ul {
+                display: none;
+            }
+        }
+
+        .btnSideNav {
+            display: flex;
+        }
+
+        .carousel-inner {
+            .carousel-item {
+                height: 13em !important;
+            }
+        }
+    }
+
+
+    .row .box {
+        height: 26em;
+        width: 21em;
+
+        img {
+            width: 20em;
+        }
+
+    }
+
+
+}
+
+
+@keyframes mymove {
+    0% {
+
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

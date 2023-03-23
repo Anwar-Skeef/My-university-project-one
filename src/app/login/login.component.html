@@ -1,0 +1,88 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#ffffff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div id="bg">
+
+
+    <section class="myform-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-area ">
+                        <!-- <div class="form-content">
+                            <h2>Login</h2>
+                            <p class="mt-5 ms-5">Find it. Tour it. Own it.</p>
+                            <div class="myform-button">
+                                <button class="myform-btn " style="    width: 110px;
+                                margin-top: 5em;
+                                margin-left: auto; margin-right: auto;    display: block;"
+                                    [routerLink]="['/signup']">Or
+                                    SignUp</button>
+
+                            </div>
+
+                        </div> -->
+                        <div class="form-input">
+                            <h2 style="display:flex ; justify-content: center ;align-items: center;">Login<a
+                                    class="myform-btn " [routerLink]="['/signup']">Or
+                                    SignUp</a></h2>
+                            <form #form="ngForm" (ngSubmit)="submit(form.value)">
+                                <div class="form-group">
+                                    <input type="text" name="name" #name="ngModel" ngModel minlength="4" required
+                                        pattern="[a-zA-Z]*[0-9]+">
+                                    <label>User Name</label>
+                                </div>
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="note alert">
+                                    <div *ngIf="name.errors?.['required']">
+                                        Name is required.
+                                    </div>
+                                    <div *ngIf="name.errors?.['pattern']">
+                                        User name not valid.
+                                    </div>
+                                    <div *ngIf="name.errors?.['minlength']">
+                                        Name must be at least 4 characters long.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email"
+                                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" ngModel
+                                        minlength="4" required>
+                                    <label>email</label>
+                                </div>
+                                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="note alert">
+                                    <div *ngIf="email.errors?.['required']">
+                                        Email is required.
+                                    </div>
+                                    <div *ngIf="email.errors?.['pattern']">
+                                        Email is invalid.
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                        name="password" #password="ngModel" ngModel required>
+                                    <label>password</label>
+                                </div>
+                                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                    class="note alert">
+                                    <div *ngIf="password.errors?.['required']">
+                                        Password is required.
+                                    </div>
+                                    <div *ngIf="password.errors?.['pattern']">
+                                        Minimum eight characters, at least one letter and one number
+                                    </div>
+
+                                </div>
+                                <div class="myform-button">
+                                    <button
+                                        [disabled]="(email.errors?.['required']||password.errors?.['required'])||(email.errors?.['pattern']||name.errors?.['pattern']||password.errors?.['pattern'])?true:false"
+                                        class="myform-btn">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

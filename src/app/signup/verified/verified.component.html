@@ -1,0 +1,49 @@
+<div id="bg">
+    <section class="myform-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-area login-form">
+
+                        <div class="form-input">
+
+                            <form #form="ngForm" (ngSubmit)="submit(form.value)">
+                                <h4 style="display:flex ; justify-content: center ;align-items: center;">We have sent a
+                                    verification code to your email. Please check your account</h4>
+                                <div class="form-group">
+                                    <input type="text" name="code" #code="ngModel" ngModel minlength="6" maxlength="6"
+                                        pattern="[0-9]+" required>
+                                    <label>code</label>
+                                </div>
+                                <div *ngIf="code.invalid && (code.dirty || code.touched)" class="note alert">
+                                    <div *ngIf="code.errors?.['required']">
+                                        code is required.
+                                    </div>
+                                    <div *ngIf="code.errors?.['pattern']">
+                                        code not valid.
+                                    </div>
+                                    <div *ngIf="code.errors?.['minlength']">
+                                        code must be at least 6 characters long.
+                                    </div>
+
+                                </div>
+                                <div *ngIf="errorMsg" class="note alert">
+                                    {{errorMsg}}
+                                </div>
+
+
+
+                                <div class="myform-button">
+                                    <button
+                                        [disabled]="(code.errors?.['pattern']||code.errors?.['required'])?true:false"
+                                        class="myform-btn">verified</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
